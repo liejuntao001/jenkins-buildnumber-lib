@@ -52,3 +52,46 @@ pipeline test1 get build_number 4, and pipeline Demo1 get build_number 5.
 ---
 
 ![demo1](screenshots/demo1-1.png)
+
+## Build and test
+The library is a gradle project.
+
+```
+.
+├── build.gradle
+├── src
+│   └── com
+├── test
+│   ├── com
+│   └── groovy
+├── testjobs
+│   └── buildnumber_Jenkinsfile.groovy
+└── vars
+    └── buildnumber.groovy
+```
+
+Local build and test
+
+```
+./gradlew clean test
+
+> Task :test
+BuildNumberTest: testGet: SUCCESS
+java.net.ConnectException: Connection refused
+[:]
+BuildNumberTest: testGetFailed: SUCCESS
+SimpleHttpsTest: testGet: SUCCESS
+SimpleHttpsTest: testPost1: SUCCESS
+SimpleHttpsTest: testPost: SUCCESS
+java.net.ConnectException: Connection refused
+SimpleHttpsTest: testBadHost: SUCCESS
+SimpleHttpsTest: testBadLink: SUCCESS
+Tests: 7, Failures: 0, Errors: 0, Skipped: 0
+
+
+BUILD SUCCESSFUL in 7s
+```
+
+Run the demo in a real Jenkins Job .
+
+![demojob](screenshots/demojob.png)
